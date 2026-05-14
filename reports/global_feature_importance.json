@@ -1,0 +1,86 @@
+{
+  "method": "random_forest_feature_importance",
+  "method_note": "SHAP was unavailable, so the scores come from the Random Forest's built-in split importance.",
+  "top_features": [
+    {
+      "feature": "Follicle_No_R",
+      "importance": 0.23406518397314607
+    },
+    {
+      "feature": "Follicle_No_L",
+      "importance": 0.15957423612283414
+    },
+    {
+      "feature": "Skin_darkening_Y_N",
+      "importance": 0.07557220221102484
+    },
+    {
+      "feature": "Weight_gain_Y_N",
+      "importance": 0.06125698285216464
+    },
+    {
+      "feature": "hair_growth_Y_N",
+      "importance": 0.0593826981980975
+    },
+    {
+      "feature": "Cycle_R_I",
+      "importance": 0.037297502022100554
+    },
+    {
+      "feature": "Cycle_length_days",
+      "importance": 0.034988486628588104
+    },
+    {
+      "feature": "AMH_ng_mL",
+      "importance": 0.033997676021422965
+    },
+    {
+      "feature": "Fast_food_Y_N",
+      "importance": 0.029445668691823537
+    },
+    {
+      "feature": "Weight_Kg",
+      "importance": 0.019723634103754998
+    },
+    {
+      "feature": "BMI",
+      "importance": 0.018098916497145554
+    },
+    {
+      "feature": "FSH_LH",
+      "importance": 0.015357163289171883
+    },
+    {
+      "feature": "Pimples_Y_N",
+      "importance": 0.014678557790511707
+    },
+    {
+      "feature": "LH_mIU_mL",
+      "importance": 0.014529155717826623
+    },
+    {
+      "feature": "Hip_inch",
+      "importance": 0.013852134925048302
+    },
+    {
+      "feature": "Age_yrs",
+      "importance": 0.013454026095322669
+    },
+    {
+      "feature": "PRL_ng_mL",
+      "importance": 0.01321298605914034
+    },
+    {
+      "feature": "Waist_Hip_Ratio",
+      "importance": 0.012915783744648017
+    },
+    {
+      "feature": "Vit_D3_ng_mL",
+      "importance": 0.01204389371004854
+    },
+    {
+      "feature": "TSH_mIU_L",
+      "importance": 0.011847870539509689
+    }
+  ]
+}

@@ -1,0 +1,372 @@
+{
+  "patient_explanation": {
+    "patient_id": "SAMPLE_000",
+    "predicted_probability": 0.056338503816444986,
+    "predicted_class": 0,
+    "risk_label": "Low Risk",
+    "explanation_method": "one_feature_replacement_fallback",
+    "explanation_note": "SHAP was unavailable, so each contribution shows how much the risk changed when one feature was replaced with a typical training value.",
+    "all_feature_contributions": [
+      {
+        "feature": "Follicle_No_L",
+        "patient_value": 3.0,
+        "contribution_to_risk": -0.020589285714285706,
+        "direction": "decreases_risk"
+      },
+      {
+        "feature": "TSH_mIU_L",
+        "patient_value": 0.68,
+        "contribution_to_risk": 0.012770604395604387,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Pulse_rate_bpm",
+        "patient_value": 78.0,
+        "contribution_to_risk": 0.00998076923076923,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Follicle_No_R",
+        "patient_value": 3.0,
+        "contribution_to_risk": -0.006277056277056277,
+        "direction": "decreases_risk"
+      },
+      {
+        "feature": "Weight_Kg",
+        "patient_value": 44.6,
+        "contribution_to_risk": 0.0059871794871794795,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "PRL_ng_mL",
+        "patient_value": 45.16,
+        "contribution_to_risk": 0.004651515151515143,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Vit_D3_ng_mL",
+        "patient_value": 17.1,
+        "contribution_to_risk": 0.00438762626262626,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Hb_g_dl",
+        "patient_value": 10.48,
+        "contribution_to_risk": -0.003964285714285705,
+        "direction": "decreases_risk"
+      },
+      {
+        "feature": "Age_yrs",
+        "patient_value": 28.0,
+        "contribution_to_risk": 0.0031250000000000028,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "BMI",
+        "patient_value": 19.304016620498615,
+        "contribution_to_risk": 0.002777222777222775,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Waist_inch",
+        "patient_value": 30.0,
+        "contribution_to_risk": -0.0025892857142857176,
+        "direction": "decreases_risk"
+      },
+      {
+        "feature": "PRG_ng_mL",
+        "patient_value": 0.57,
+        "contribution_to_risk": 0.0019681658211069958,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Height_Cm",
+        "patient_value": 152.0,
+        "contribution_to_risk": -0.00174458874458875,
+        "direction": "decreases_risk"
+      },
+      {
+        "feature": "RR_breaths_min",
+        "patient_value": 22.0,
+        "contribution_to_risk": 0.0014285714285714318,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Waist_Hip_Ratio",
+        "patient_value": 0.8333333333333334,
+        "contribution_to_risk": 0.0011111111111111113,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Avg_F_size_L_mm",
+        "patient_value": 18.0,
+        "contribution_to_risk": 0.0009639249639249517,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Avg_F_size_R_mm",
+        "patient_value": 18.0,
+        "contribution_to_risk": -0.0008333333333333318,
+        "direction": "decreases_risk"
+      },
+      {
+        "feature": "LH_mIU_mL",
+        "patient_value": 3.68,
+        "contribution_to_risk": -0.0007738095238095308,
+        "direction": "decreases_risk"
+      },
+      {
+        "feature": "FSH_mIU_mL",
+        "patient_value": 7.95,
+        "contribution_to_risk": 0.0005952380952381001,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Cycle_R_I",
+        "patient_value": 2.0,
+        "contribution_to_risk": 6.938893903907228e-18,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Fast_food_Y_N",
+        "patient_value": 1.0,
+        "contribution_to_risk": 6.938893903907228e-18,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Cycle_length_days",
+        "patient_value": 5.0,
+        "contribution_to_risk": 0.0,
+        "direction": "decreases_risk"
+      },
+      {
+        "feature": "FSH_LH",
+        "patient_value": 2.1603260869565215,
+        "contribution_to_risk": 0.0,
+        "direction": "decreases_risk"
+      },
+      {
+        "feature": "Hip_inch",
+        "patient_value": 36.0,
+        "contribution_to_risk": 0.0,
+        "direction": "decreases_risk"
+      },
+      {
+        "feature": "AMH_ng_mL",
+        "patient_value": 2.07,
+        "contribution_to_risk": 0.0,
+        "direction": "decreases_risk"
+      },
+      {
+        "feature": "RBS_mg_dl",
+        "patient_value": 92.0,
+        "contribution_to_risk": 0.0,
+        "direction": "decreases_risk"
+      },
+      {
+        "feature": "Weight_gain_Y_N",
+        "patient_value": 0.0,
+        "contribution_to_risk": 0.0,
+        "direction": "decreases_risk"
+      },
+      {
+        "feature": "hair_growth_Y_N",
+        "patient_value": 0.0,
+        "contribution_to_risk": 0.0,
+        "direction": "decreases_risk"
+      },
+      {
+        "feature": "Skin_darkening_Y_N",
+        "patient_value": 0.0,
+        "contribution_to_risk": 0.0,
+        "direction": "decreases_risk"
+      },
+      {
+        "feature": "Hair_loss_Y_N",
+        "patient_value": 0.0,
+        "contribution_to_risk": 0.0,
+        "direction": "decreases_risk"
+      },
+      {
+        "feature": "Pimples_Y_N",
+        "patient_value": 0.0,
+        "contribution_to_risk": 0.0,
+        "direction": "decreases_risk"
+      },
+      {
+        "feature": "Reg_Exercise_Y_N",
+        "patient_value": 0.0,
+        "contribution_to_risk": 0.0,
+        "direction": "decreases_risk"
+      },
+      {
+        "feature": "BP_Systolic_mmHg",
+        "patient_value": 110.0,
+        "contribution_to_risk": 0.0,
+        "direction": "decreases_risk"
+      },
+      {
+        "feature": "BP_Diastolic_mmHg",
+        "patient_value": 80.0,
+        "contribution_to_risk": 0.0,
+        "direction": "decreases_risk"
+      },
+      {
+        "feature": "Endometrium_mm",
+        "patient_value": 8.5,
+        "contribution_to_risk": 0.0,
+        "direction": "decreases_risk"
+      }
+    ],
+    "top_5_risk_increasing_features": [
+      {
+        "feature": "TSH_mIU_L",
+        "patient_value": 0.68,
+        "contribution_to_risk": 0.012770604395604387,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Pulse_rate_bpm",
+        "patient_value": 78.0,
+        "contribution_to_risk": 0.00998076923076923,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Weight_Kg",
+        "patient_value": 44.6,
+        "contribution_to_risk": 0.0059871794871794795,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "PRL_ng_mL",
+        "patient_value": 45.16,
+        "contribution_to_risk": 0.004651515151515143,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Vit_D3_ng_mL",
+        "patient_value": 17.1,
+        "contribution_to_risk": 0.00438762626262626,
+        "direction": "increases_risk"
+      }
+    ],
+    "top_5_risk_reducing_features": [
+      {
+        "feature": "Follicle_No_L",
+        "patient_value": 3.0,
+        "contribution_to_risk": -0.020589285714285706,
+        "direction": "decreases_risk"
+      },
+      {
+        "feature": "Follicle_No_R",
+        "patient_value": 3.0,
+        "contribution_to_risk": -0.006277056277056277,
+        "direction": "decreases_risk"
+      },
+      {
+        "feature": "Hb_g_dl",
+        "patient_value": 10.48,
+        "contribution_to_risk": -0.003964285714285705,
+        "direction": "decreases_risk"
+      },
+      {
+        "feature": "Waist_inch",
+        "patient_value": 30.0,
+        "contribution_to_risk": -0.0025892857142857176,
+        "direction": "decreases_risk"
+      },
+      {
+        "feature": "Height_Cm",
+        "patient_value": 152.0,
+        "contribution_to_risk": -0.00174458874458875,
+        "direction": "decreases_risk"
+      }
+    ]
+  },
+  "global_feature_importance_summary": {
+    "method": "random_forest_feature_importance",
+    "method_note": "SHAP was unavailable, so the scores come from the Random Forest's built-in split importance.",
+    "top_features": [
+      {
+        "feature": "Follicle_No_R",
+        "importance": 0.23406518397314607
+      },
+      {
+        "feature": "Follicle_No_L",
+        "importance": 0.15957423612283414
+      },
+      {
+        "feature": "Skin_darkening_Y_N",
+        "importance": 0.07557220221102484
+      },
+      {
+        "feature": "Weight_gain_Y_N",
+        "importance": 0.06125698285216464
+      },
+      {
+        "feature": "hair_growth_Y_N",
+        "importance": 0.0593826981980975
+      },
+      {
+        "feature": "Cycle_R_I",
+        "importance": 0.037297502022100554
+      },
+      {
+        "feature": "Cycle_length_days",
+        "importance": 0.034988486628588104
+      },
+      {
+        "feature": "AMH_ng_mL",
+        "importance": 0.033997676021422965
+      },
+      {
+        "feature": "Fast_food_Y_N",
+        "importance": 0.029445668691823537
+      },
+      {
+        "feature": "Weight_Kg",
+        "importance": 0.019723634103754998
+      },
+      {
+        "feature": "BMI",
+        "importance": 0.018098916497145554
+      },
+      {
+        "feature": "FSH_LH",
+        "importance": 0.015357163289171883
+      },
+      {
+        "feature": "Pimples_Y_N",
+        "importance": 0.014678557790511707
+      },
+      {
+        "feature": "LH_mIU_mL",
+        "importance": 0.014529155717826623
+      },
+      {
+        "feature": "Hip_inch",
+        "importance": 0.013852134925048302
+      },
+      {
+        "feature": "Age_yrs",
+        "importance": 0.013454026095322669
+      },
+      {
+        "feature": "PRL_ng_mL",
+        "importance": 0.01321298605914034
+      },
+      {
+        "feature": "Waist_Hip_Ratio",
+        "importance": 0.012915783744648017
+      },
+      {
+        "feature": "Vit_D3_ng_mL",
+        "importance": 0.01204389371004854
+      },
+      {
+        "feature": "TSH_mIU_L",
+        "importance": 0.011847870539509689
+      }
+    ]
+  }
+}
