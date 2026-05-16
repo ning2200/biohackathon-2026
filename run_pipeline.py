@@ -14,7 +14,7 @@ project_root = Path(__file__).parent
 src_path = project_root / "src"
 sys.path.insert(0, str(src_path))
 
-from pmos_pipeline import main
+from src.pmos_pipeline import main
 
 
 if __name__ == "__main__":
