@@ -11,11 +11,11 @@ from dotenv import load_dotenv
 from flask import Flask, jsonify, request
 import pandas as pd
 
-from src.explain_model import explain_single_patient, load_model_and_preprocessor
-
 project_root = Path(__file__).parent
 src_path = project_root / "src"
 sys.path.insert(0, str(src_path))
+
+from explain_model import explain_single_patient, load_model_and_preprocessor
 
 app = Flask(__name__)
 
@@ -46,9 +46,30 @@ def bool_to_flag(value: Any) -> Optional[float]:
     if isinstance(value, bool):
         return 1.0 if value else 0.0
     normalized = str(value).strip().lower()
-    if normalized in {"yes", "true", "1", "present", "positive"}:
+    if normalized in {
+        "yes",
+        "true",
+        "1",
+        "present",
+        "positive",
+        "some",
+        "mild",
+        "moderate",
+        "severe",
+        "significant",
+        "often",
+        "frequent",
+    }:
         return 1.0
-    if normalized in {"no", "false", "0", "absent", "negative"}:
+    if normalized in {
+        "no",
+        "false",
+        "0",
+        "absent",
+        "negative",
+        "none",
+        "never",
+    }:
         return 0.0
     return None
 
@@ -61,23 +82,46 @@ def cycle_pattern_code(value: Any) -> Optional[float]:
         return 2.0
     if normalized in {"irregular", "irregular pattern", "irregular cycle"}:
         return 4.0
-    if normalized in {"marked irregularity", "marked irregular", "marked"}:
+    if normalized in {"marked irregularity", "marked irregular", "marked", "absent", "amenorrhea"}:
         return 5.0
     return float_or_none(value)
 
 
+def calculate_bmi(weight_kg: Optional[float], height_cm: Optional[float]) -> Optional[float]:
+    if weight_kg is None or height_cm is None or height_cm == 0.0:
+        return None
+    return round(weight_kg / ((height_cm / 100.0) ** 2), 1)
+
+
+def calculate_ratio(numerator: Optional[float], denominator: Optional[float]) -> Optional[float]:
+    if numerator is None or denominator is None or denominator == 0.0:
+        return None
+    return round(numerator / denominator, 2)
+
+
+def calculate_waist_hip_ratio(waist_inch: Optional[float], hip_inch: Optional[float]) -> Optional[float]:
+    if waist_inch is None or hip_inch is None or hip_inch == 0.0:
+        return None
+    return round(waist_inch / hip_inch, 3)
+
+
 def build_patient_feature_row(payload: Dict[str, Any]) -> Dict[str, Optional[float]]:
+    weight_kg = float_or_none(payload.get("weight_kg"))
+    height_cm = float_or_none(payload.get("height_cm"))
     fsh = float_or_none(payload.get("fsh"))
     lh = float_or_none(payload.get("lh"))
-    fsh_lh_ratio = None
-    if fsh is not None and lh is not None and lh != 0.0:
-        fsh_lh_ratio = fsh / lh
+    waist_inch = float_or_none(payload.get("waist_inch"))
+    hip_inch = float_or_none(payload.get("hip_inch"))
+
+    bmi_value = float_or_none(payload.get("bmi")) or calculate_bmi(weight_kg, height_cm)
+    fsh_lh_value = float_or_none(payload.get("fsh_lh")) or calculate_ratio(fsh, lh)
+    waist_hip_ratio_value = float_or_none(payload.get("waist_hip_ratio")) or calculate_waist_hip_ratio(waist_inch, hip_inch)
 
     return {
         "Age_yrs": float_or_none(payload.get("patient_age")),
-        "Weight_Kg": float_or_none(payload.get("weight_kg")),
-        "Height_Cm": float_or_none(payload.get("height_cm")),
-        "BMI": float_or_none(payload.get("bmi")),
+        "Weight_Kg": weight_kg,
+        "Height_Cm": height_cm,
+        "BMI": bmi_value,
         "Pulse_rate_bpm": float_or_none(payload.get("pulse_rate")),
         "RR_breaths_min": float_or_none(payload.get("respiratory_rate")),
         "Hb_g_dl": float_or_none(payload.get("hemoglobin")),
@@ -85,10 +129,10 @@ def build_patient_feature_row(payload: Dict[str, Any]) -> Dict[str, Optional[flo
         "Cycle_length_days": float_or_none(payload.get("cycle_length")),
         "FSH_mIU_mL": fsh,
         "LH_mIU_mL": lh,
-        "FSH_LH": float_or_none(payload.get("fsh_lh")) or fsh_lh_ratio,
-        "Hip_inch": float_or_none(payload.get("hip_inch")),
-        "Waist_inch": float_or_none(payload.get("waist_inch")),
-        "Waist_Hip_Ratio": float_or_none(payload.get("waist_hip_ratio")),
+        "FSH_LH": fsh_lh_value,
+        "Hip_inch": hip_inch,
+        "Waist_inch": waist_inch,
+        "Waist_Hip_Ratio": waist_hip_ratio_value,
         "TSH_mIU_L": float_or_none(payload.get("tsh")),
         "AMH_ng_mL": float_or_none(payload.get("amh")),
         "PRL_ng_mL": float_or_none(payload.get("prl")),
@@ -177,19 +221,21 @@ def build_llm_prompt(payload: Dict[str, Any], explanation: Dict[str, Any]) -> st
     mapping = [
         ("patient_id", "Patient ID"),
         ("patient_age", "Age (yrs)"),
+        ("weight_kg", "Weight (kg)"),
+        ("height_cm", "Height (cm)"),
         ("menstrual_regularity", "Menstrual regularity"),
         ("cycle_length", "Cycle length (days)"),
         ("bmi", "BMI"),
         ("weight_gain", "Recent weight gain"),
         ("hirsutism", "Hirsutism"),
         ("acne", "Acne"),
-        ("skin_darkening", "Skin darkening"),
-        ("hair_loss", "Hair loss"),
-        ("amh", "AMH (ng/mL)"),
-        ("lh", "LH (IU/L)"),
         ("fsh", "FSH (IU/L)"),
+        ("lh", "LH (IU/L)"),
+        ("fsh_lh", "FSH/LH ratio"),
+        ("amh", "AMH (ng/mL)"),
         ("follicle_count_left", "Follicle count left"),
         ("follicle_count_right", "Follicle count right"),
+        ("waist_hip_ratio", "Waist:hip ratio"),
         ("fasting_glucose", "Fasting blood glucose (mg/dL)"),
         ("systolic_bp", "Systolic BP (mmHg)"),
         ("diastolic_bp", "Diastolic BP (mmHg)"),
@@ -262,7 +308,6 @@ def create_assessment():
 
     response_payload = {
         "patient_id": patient_id,
-        "patient_input": payload,
         "model_probability": explanation["predicted_probability"],
         "model_risk_label": explanation["risk_label"],
         "model_explanation_method": explanation["explanation_method"],
