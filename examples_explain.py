@@ -17,7 +17,7 @@ import pandas as pd
 src_path = Path(__file__).parent / 'src'
 sys.path.insert(0, str(src_path))
 
-from src.explain_model import (
+from explain_model import (
     load_trained_model,
     explain_single_prediction,
     get_global_feature_importance,
